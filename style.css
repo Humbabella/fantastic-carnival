@@ -1,0 +1,165 @@
+*{
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+body {background-color: #666}
+
+#game_page{position: relative; height: 100%}
+
+#left_column{position: absolute; width: 50%; left: 0%; height: 90%; margin: 7px}
+#middle_column{position: absolute; width: 25%; left: 50%; margin: 15px}
+#right_column{position: absolute; width: 25%; left: 75%; margin: 7px}
+#debug_window{position:fixed; top: 0px; right: 0px; border: 1px solid black; display: none}
+
+.starchart{position: relative; height: 60px; overflow: hidden}
+.starchart_highlight{position: absolute; height: 60px; border-right: 1px solid white; border-left: 1px solid white}
+.starchart_left_border{position: absolute; left: 0%; height: 60px; width: 4%; z-index: 10; pointer-events: none;
+	background: -webkit-linear-gradient(left, rgba(101,101,101,1), rgba(101,101,101,0));
+    background: -o-linear-gradient(right, rgba(101,101,101,1), rgba(101,101,101,0));
+    background: -moz-linear-gradient(right, rgba(101,101,101,1), rgba(101,101,101,0));
+    background: linear-gradient(to right, rgba(101,101,101,1), rgba(101,101,101,0));
+}
+.starchart_right_border{position: absolute; right: 0%; height: 60px; width: 4%; z-index: 10; pointer-events: none;
+	background: -webkit-linear-gradient(left, rgba(101,101,101,0), rgba(101,101,101,1));
+    background: -o-linear-gradient(right, rgba(101,101,101,0), rgba(101,101,101,1));
+    background: -moz-linear-gradient(right, rgba(101,101,101,0), rgba(101,101,101,1));
+    background: linear-gradient(to right, rgba(101,101,101,0), rgba(101,101,101,1));
+}
+
+.hidden{display: none}
+
+.starsign{position: absolute; color: white; font-size: 125%; right: 150%}
+.starsign_active{text-shadow: 0px 0px 5px #ff0}
+.star{position: absolute; color: white; right: 150%}
+.active_stars{position: relative; height: auto}
+.active_star_line{position: relative; height: auto; display: none}
+
+
+.tooltip{position: absolute; top: 100%; display: none; border: 1px solid #000; border-radius: 3px; background-color: #ccc; margin-top: 10px; width: 90%}
+.tooltip_heading{font-weight: bold; background-color: #000; color: #fff; padding: 3px; margin-bottom: 3px}
+.tooltip_body{padding: 3px;}
+
+.junction{border: 2px solid #000; border-radius: 5px; box-shadow: 5px 5px 3px #333;}
+.junction_content{height: 100%}
+.junction_header{background-color: #000; min-height: 35px;}
+.junction_body_left{height: 95%; position: absolute; left: 7px; width: 48%; overflow-y: auto}
+.junction_body_right{height: 95%; position: absolute; left: 50%; width: 48%; overflow-y: auto}
+
+.tab_header{color: #fff; text-shadow: 2px 2px 1px #666; font-weight: bold; border: 1px solid #fff; float: left; margin: 5px; padding: 3px; display: none}
+.tab_header_select{color: #000; background-color: #999}
+.tab_header_red{color: #f55; text-shadow: 2px 2px 1px #622; font-weight: bold; border: 1px solid #f55; float: left; margin: 5px; padding: 3px; display: none}
+.tab_header_select_red{color: #000; background-color: #c33}
+.tab_header_alert{color: #f55; text-shadow: 2px 2px 1px #622; border: 1px solid #f55; float: left; margin: 5px; padding: 3px; display: none}
+.tab_body{margin: 2px}
+
+.expander{position:relative; display: none; overflow: hidden; height: 23px; margin-bottom: 3px; width: 100%}
+.expander_head{position: relative; width: 100%}
+.expander_line{position: relative; border-bottom: 1px dotted black; height: 5px; margin-bottom: 2px}
+.expander_upgrades{display: none};
+.expander_footer{height: 9px}
+.expander_header_inline{display: inline}
+.expander_header_append{display: inline}
+.expander_header_button{position: absolute; top: 0px; border: 1px solid #000; height: 21px; overflow: hidden; border-radius: 3px; width: 50%; right: 1px}
+.expander_lock_button{position: absolute; right: 0%; font-size: 10px; top: 2px; z-index: 10}
+.expander_title_alert{text-shadow: 1px 1px 3px #dd0}
+.button_fill{position: absolute; top: 0px; left: 100%; width: 100%; height: 100%; background-color: #888}
+.button_text{position: absolute; top: 0px; width: 100%; height: 100%; text-align: center; background: transparent}
+
+.command_button{position: absolute; top: 0px; border: 1px solid #000; height: 21px; overflow: hidden; border-radius: 3px; width: 50%; right: 1px}
+.command_button_text{position: absolute; top: 0px; width: 100%; height: 100%; text-align: center; background: transparent}
+
+.upgrade_line{padding-left: 10px; position: relative; display: none}
+.upgrade_title{position: relative; display: inline}
+.upgrade_complete{position: relative; display: inline}
+.upgrade_buy{position: absolute; top: 0px; border: 1px solid #000; height: 21px; overflow: hidden; border-radius: 3px; width: 50%; right: 1px; text-align: center}
+
+.section{margin-bottom: 15px; display: none}
+.section_header{position: relative; font-weight: bold; border-bottom: 1px solid #000; margin-bottom: 3px}
+.section_collapse_button{position: absolute; right: 0px; top: 0px;}
+
+.log{}
+.log_body{min-height: 500px}
+.log_header{background-color: #000; min-height: 35px;}
+.log_line_tech{text-shadow: 2px 2px 5px #630}
+.log_line_big_death{text-shadow: 2px 2px 5px #500}
+.log_line_fortune{text-shadow: 2px 2px 5px #020}
+
+.sub_log_header{color: #fff; text-shadow: 2px 2px 1px #666; font-weight: bold; border: 1px solid #fff; margin: 5px; padding: 3px; display: inline-block}
+.sub_log_header_select{color: #000; background-color: #999}
+.sub_log_body{margin: 2px}
+
+.clock{font-weight: bold; margin-bottom: 6px}
+.clock_time{display: none}
+
+.resource_table{margin-bottom: 20px}
+.warehouse_table{display: none}
+.blank_resource{height: 12px}
+.resource{display: none;}
+.resource_name{padding-right: 20px}
+.resource_current{text-align: right}
+.resource_max{}
+.resource_tick{}
+.resource_warn{color: #700}
+.resource_warn_bright{color: #c00}
+.table_button{border: 1px solid #000; border-radius: 3px; width: 20px; background-color: #ddd; color: #000; padding: 2px; text-align: center}
+
+.job_holder{width: 100%; display: none; position: relative; min-height: 24px}
+.job_title{display: inline-block; position: relative; padding-top: 3px; width: 25%; min-width: 100px}
+.job_count{display: inline-block; position: relative; width: 15%; min-width: 70px; text-align: center}
+.job_target{display: inline-block; position: relative; width: 15%; min-width: 70px; text-align: center}
+.job_plus_button{position: absolute; border: 1px solid #000; border-radius: 3px; width: 20px; height: 20px; background-color: #ddd; color: #000; text-align: center; right: 25px; top: 0px; font-size: 17px}
+.job_minus_button{position: absolute; border: 1px solid #000; border-radius: 3px; width: 20px; height: 20px; background-color: #ddd; color: #000; text-align: center; right: 0px; top: 0px; font-size: 17px}
+
+.temple_main{margin-bottom: 20px}
+.temple_button {text-align: center; position: relative; border: 1px solid #000; margin: 2px; height: 23px; background-color: #ddd; overflow: hidden; border-radius: 3px}
+
+.act{position: relative}
+.act_outline{position: relative; border: 1px solid #000; margin: 2px; height: 23px; background-color: #ddd; overflow: hidden; border-radius: 3px}
+.act_fill{position: absolute; width: 100%; height: 100%; background-color: #888}
+.act_title{position: absolute; width: 100%; height: 100%; background: transparent; text-align: center}
+.act_cooldown{color: #444}
+
+.world_map{position: relative}
+.map_tile{position: absolute; width: 45%; height: 45%; border: 1px solid black; box-shadow: 2px 2px 2px black; background-color: #666}
+.map_image{position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-size: contain; transform-origin: top left;-webkit-transform-origin: top left;-ms-transform-origin: top left;}
+.map_image_rotate_1{transform: rotate(90deg) translateY(-100%);-webkit-transform: rotate(90deg) translateY(-100%); -ms-transform: rotate(90deg) translateY(-100%);}
+.map_image_rotate_2{transform: rotate(180deg) translate(-100%, -100%);  -webkit-transform: rotate(180deg) translate(-100%, -100%); -ms-transform: rotate(180deg) translateX(-100%, -100%);}
+.map_image_rotate_3{transform: rotate(270deg) translateX(-100%);-webkit-transform: rotate(270deg) translateX(-100%); -ms-transform: rotate(270deg) translateX(-100%);}
+.map_tile_highlight {box-shadow: 1px 1px 3px #dd0, -1px -1px 3px #dd0}
+.interest{font-weight: bold; position: absolute; color: #000; text-shadow: 1px 1px 2px #999}
+.interest_expired{color: #555; text-shadow: 1px 1px 2px #aaa}
+.interest_highlight {text-shadow: 1px 1px 3px #dd0, -1px -1px 3px #dd0}
+.interest_flag{font-size: 40%; display: none;}
+.interest_flag_container{position: absolute; right: 85%; top: 0%; text-align: right}
+.flag_button{text-align: center; position: relative; border: 1px solid #000; margin: 2px; height: 23px; background-color: #ddd; overflow: hidden; border-radius: 3px}
+
+.dropdown{position: relative; width: 100%; height: 25px}
+.dropdown_text{position: aboslute; top: 2px; left: 0px; width: 50%}
+.dropdown_button{position: absolute; top: 0px; right: 0px; width: 50%; border: 1px solid #000; height: 21px; background-color: #ddd; border-radius: 3px; text-align: center}
+.dropdown_menu{position: absolute; top: 0px; right: 0px; width: 50%; border: 1px solid #000; background-color: #ddd; border-radius: 3px; text-align: center; display: none; z-index: 10; min-height: 23px}
+.dropdown_selected{text-shadow: 1px 1px #000; color: #440}
+
+.spinner{position: relative; width: 100%; height: 25px}
+.spinner_text{position: absolute; top: 2px; left: 0px; width: 50%}
+.spinner_plus{position: absolute; top: 0px; right: 25px; width: 21px; border: 1px solid #000; height: 21px; background-color: #ddd; border-radius: 3px; text-align: center}
+.spinner_minus{position: absolute; top: 0px; right: 0px; width: 21px; border: 1px solid #000; height: 21px; background-color: #ddd; border-radius: 3px; text-align: center}
+
+.grey_out{opacity: .5}
+
+.grad_fill{
+	background: #ddd; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(left top, #ddd, #bbb); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, #ddd, #bbb); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, #ddd, #bbb); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right, #ddd, #bbb); /* Standard syntax */
+}
+
+.rev_grad {
+	background: #ddd; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(bottom right, #ddd, #bbb); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(top left, #ddd, #bbb); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(top left, #ddd, #bbb); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to top left, #ddd, #bbb); /* Standard syntax */
+}
